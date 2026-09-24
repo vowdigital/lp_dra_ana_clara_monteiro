@@ -15,6 +15,111 @@ function track(event) {
   });
 }
 
+function mountCarousel(root, slides, label) {
+  if (!root || slides.length < 2) return;
+  root.classList.add('is-carousel');
+  root.setAttribute('role', 'region');
+  root.setAttribute('aria-roledescription', 'carousel');
+  root.setAttribute('aria-label', label);
+  root.tabIndex = 0;
+  let current = 0;
+  let timer;
+
+  const controls = document.createElement('div');
+  controls.className = 'carousel-controls';
+  const previous = document.createElement('button');
+  previous.className = 'carousel-control carousel-control-prev';
+  previous.type = 'button';
+  previous.setAttribute('aria-label', 'Foto anterior');
+  previous.textContent = '←';
+  const next = document.createElement('button');
+  next.className = 'carousel-control carousel-control-next';
+  next.type = 'button';
+  next.setAttribute('aria-label', 'Próxima foto');
+  next.textContent = '→';
+  const dots = document.createElement('div');
+  dots.className = 'carousel-dots';
+  const dotButtons = slides.map((slide, index) => {
+    slide.classList.add('carousel-slide');
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'carousel-dot';
+    dot.setAttribute('aria-label', `Ver foto ${index + 1}`);
+    dot.addEventListener('click', () => goTo(index));
+    dots.append(dot);
+    return dot;
+  });
+  controls.append(previous, dots, next);
+  root.append(controls);
+
+  function goTo(index) {
+    current = (index + slides.length) % slides.length;
+    slides.forEach((slide, slideIndex) => {
+      const active = slideIndex === current;
+      slide.hidden = false;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', String(!active));
+      dotButtons[slideIndex].setAttribute('aria-current', active ? 'true' : 'false');
+    });
+  }
+  function start() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    window.clearInterval(timer);
+    timer = window.setInterval(() => goTo(current + 1), 6000);
+  }
+  function stop() { window.clearInterval(timer); }
+
+  previous.addEventListener('click', () => { goTo(current - 1); start(); });
+  next.addEventListener('click', () => { goTo(current + 1); start(); });
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  root.addEventListener('focusin', stop);
+  root.addEventListener('focusout', event => { if (!root.contains(event.relatedTarget)) start(); });
+  root.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft') { event.preventDefault(); goTo(current - 1); start(); }
+    if (event.key === 'ArrowRight') { event.preventDefault(); goTo(current + 1); start(); }
+  });
+  goTo(0);
+  start();
+}
+
+function setupHeroCarousel() {
+  const root = document.querySelector('.hero-image');
+  const picture = root?.querySelector('picture');
+  if (!root || !picture) return;
+  const first = document.createElement('div');
+  first.className = 'carousel-slide';
+  first.append(picture);
+  root.replaceChildren(first);
+  const extraPhotos = [
+    ['/images/doctor/ana-clara-editorial-01.jpg', 'Dra. Ana Clara Monteiro em retrato profissional sentado'],
+    ['/images/doctor/ana-clara-editorial-02.jpg', 'Dra. Ana Clara Monteiro em retrato profissional de corpo inteiro'],
+    ['/images/doctor/ana-clara-editorial-03.jpg', 'Dra. Ana Clara Monteiro em retrato profissional'],
+    ['/images/doctor/ana-clara-editorial-04.jpg', 'Dra. Ana Clara Monteiro em retrato sorrindo'],
+    ['/images/doctor/ana-clara-editorial-05.jpg', 'Dra. Ana Clara Monteiro em retrato sentado'],
+  ];
+  const slides = [first, ...extraPhotos.map(([src, alt]) => {
+    const slide = document.createElement('div');
+    const image = document.createElement('img');
+    image.src = src;
+    image.alt = alt;
+    image.width = 724;
+    image.height = 1084;
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    slide.append(image);
+    root.append(slide);
+    return slide;
+  })];
+  mountCarousel(root, slides, 'Retratos da Dra. Ana Clara Monteiro');
+}
+
+function setupClinicCarousel() {
+  const root = document.querySelector('.clinic-gallery');
+  if (!root) return;
+  mountCarousel(root, [...root.querySelectorAll('figure')], 'Fotos da Clínica Imagem');
+}
+
 document.querySelectorAll('[data-whatsapp]').forEach(link => {
   link.href = whatsappUrl;
   link.target = '_blank';
@@ -33,6 +138,8 @@ renderDifferentials(document.querySelector('[data-differentials]'), differential
 renderJourney(document.querySelector('[data-journey]'), journey);
 renderFaq(document.querySelector('[data-faq]'), faqs);
 renderTestimonials(document.querySelector('[data-testimonials]'), testimonials);
+setupHeroCarousel();
+setupClinicCarousel();
 
 document.querySelectorAll('.treatment-cta').forEach(link => link.addEventListener('click', () => track('treatment_whatsapp_click')));
 document.querySelectorAll('.treatment-item button, .faq-question').forEach(button => button.addEventListener('click', () => {
