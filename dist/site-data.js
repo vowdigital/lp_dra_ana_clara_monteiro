@@ -34,9 +34,9 @@ export const treatments = {
   ]
 };
 
-export const differentials = ['Planejamento completo e individualizado', 'Conhecimento médico e experiência técnica', 'Resultados naturais e equilibrados', 'Atendimento acolhedor e humanizado', 'Fechamento realizado diretamente pela médica', 'Acompanhamento após os procedimentos', 'Senso estético apurado', 'Atuação no ensino de outros médicos', 'Capacidade de identificar quando tratar e quando não intervir'];
+export const differentials = ['Planejamento completo e individualizado', 'Conhecimento médico e experiência técnica', 'Resultados naturais e equilibrados', 'Atendimento acolhedor e humanizado', 'Fechamento realizado diretamente pela médica', 'Acompanhamento após os procedimentos', 'Senso estético apurado', 'Atuação no ensino de outros médicos', 'Capacidade de identificar quando tratar e quando não intervir', 'Preservação da identidade e da naturalidade'];
 
-export const journey = ['Primeiro contato pelo WhatsApp', 'Agendamento da consulta', 'Avaliação individualizada', 'Planejamento do tratamento', 'Realização dos procedimentos indicados', 'Acompanhamento', 'Retornos conforme necessidade'];
+export const journey = ['Primeiro contato pelo WhatsApp', 'Agendamento da consulta', 'Avaliação individualizada', 'Planejamento do tratamento', 'Realização dos procedimentos indicados', 'Orientações após o procedimento', 'Acompanhamento', 'Retornos conforme necessidade'];
 
 export const faqs = [
   ['Como funciona a avaliação?', 'A avaliação é o momento de compreender suas características, seu processo de envelhecimento e seus objetivos. A partir dela, a médica orienta as possibilidades adequadas para o seu caso.'],

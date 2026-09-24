@@ -892,3 +892,241 @@ body, button, .main-nav, .section-label, .eyebrow, .button, .header-cta { font-f
     margin-right: auto;
   }
 }
+
+/* Ritmo final: títulos mais leves e menos áreas vazias entre os blocos. */
+main > section.section {
+  padding-bottom: clamp(3.25rem, 4.8vw, 4.75rem);
+  padding-top: clamp(3.25rem, 4.8vw, 4.75rem);
+}
+main > section.hero {
+  padding-bottom: clamp(3.5rem, 5vw, 5rem);
+  padding-top: clamp(5rem, 6vw, 6.25rem);
+}
+h1 { font-size: clamp(3.2rem, 5.8vw, 6.7rem); }
+.about-copy h2,
+.approach-heading h2,
+.facial-copy h2,
+.treatments-heading h2,
+.differentials h2,
+.journey-heading h2,
+.faq-heading h2,
+.results-heading h2,
+.doctor-presence-heading h2 {
+  font-size: clamp(2.6rem, 3.9vw, 4.6rem);
+  line-height: .94;
+}
+.location-heading h2 { font-size: clamp(3.2rem, 5vw, 6rem); }
+.final-cta h2 { font-size: clamp(3.2rem, 5.7vw, 6.4rem); line-height: .92; }
+.treatments-heading {
+  grid-template-columns: .45fr 1.55fr;
+}
+.treatments-heading h2 { max-width: 900px; }
+.results-heading {
+  grid-template-columns: .35fr 1.65fr;
+}
+.results-heading h2 { max-width: 900px; }
+.treatment-columns { margin-top: 32px; }
+.differentials-layout { margin-top: 24px; }
+.differential { min-height: 128px; padding: 18px; }
+.differential span { padding-bottom: 13px; }
+.differential p { font-size: 18px; }
+.journey-list { margin-top: 30px; }
+.journey-list li { min-height: 132px; padding: 18px; }
+.faq-question { font-size: clamp(1.35rem, 1.8vw, 1.9rem); padding: 18px 0; }
+.treatment-columns h3 { font-size: 30px; }
+
+.differentials-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+.differentials-image {
+  border-radius: 18px 18px 72px 18px;
+  margin: 0;
+  max-width: 480px;
+  overflow: hidden;
+  width: 100%;
+}
+.differentials-image img {
+  aspect-ratio: 3 / 4;
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  width: 100%;
+}
+@media (max-width: 850px) {
+  main > section.section { padding-bottom: 3.5rem; padding-top: 3.5rem; }
+  main > section.hero { padding-bottom: 4rem; padding-top: 5rem; }
+  .differentials-image { max-width: 440px; }
+}
+@media (max-width: 560px) {
+  main > section.section { padding-bottom: 3rem; padding-top: 3rem; }
+  main > section.hero { padding-bottom: 3.5rem; padding-top: 5rem; }
+  h1 { font-size: clamp(3rem, 13vw, 4.7rem); }
+  .about-copy h2,
+  .approach-heading h2,
+  .facial-copy h2,
+  .treatments-heading h2,
+  .differentials h2,
+  .journey-heading h2,
+  .faq-heading h2,
+  .results-heading h2,
+  .doctor-presence-heading h2,
+  .location-heading h2,
+  .final-cta h2 { font-size: clamp(2.45rem, 11vw, 4rem); }
+  .differentials-image { max-width: none; }
+}
+
+/* Jornada: cards maiores, alinhados ao mesmo container e sem ultrapassar as margens. */
+.journey-list {
+  gap: 12px;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  margin-left: -2rem;
+  margin-right: -2rem;
+  width: calc(100% + 4rem);
+}
+.journey-list li {
+  font-size: clamp(1.08rem, 1.3vw, 1.3rem);
+  line-height: 1.06;
+  min-height: 172px;
+  min-width: 0;
+  overflow-wrap: break-word;
+  padding: 22px 18px;
+}
+@media (min-width: 1101px) {
+  .journey-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 1100px) {
+  .journey-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 850px) {
+  .journey-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-left: 0;
+    margin-right: 0;
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* Escala tipográfica reduzida para títulos mais leves e menos verticais. */
+h1 { font-size: clamp(2.8rem, 5vw, 5.8rem); }
+.about-copy h2,
+.approach-heading h2,
+.facial-copy h2,
+.treatments-heading h2,
+.differentials h2,
+.journey-heading h2,
+.faq-heading h2,
+.results-heading h2,
+.doctor-presence-heading h2 {
+  font-size: clamp(2.25rem, 3.2vw, 3.8rem);
+  line-height: .98;
+}
+.location-heading h2 { font-size: clamp(2.8rem, 4vw, 5rem); }
+.final-cta h2 { font-size: clamp(2.8rem, 4.6vw, 5.6rem); line-height: .96; }
+@media (max-width: 560px) {
+  h1 { font-size: clamp(2.7rem, 12vw, 4.2rem); }
+  .about-copy h2,
+  .approach-heading h2,
+  .facial-copy h2,
+  .treatments-heading h2,
+  .differentials h2,
+  .journey-heading h2,
+  .faq-heading h2,
+  .results-heading h2,
+  .doctor-presence-heading h2,
+  .location-heading h2,
+  .final-cta h2 { font-size: clamp(2.2rem, 9.5vw, 3.5rem); }
+}
+
+/* FAQ: o título acompanha a leitura da lista e para no limite da própria seção. */
+@media (min-width: 851px) {
+  .faq-heading {
+    align-self: start;
+    position: sticky;
+    top: 110px;
+  }
+}
+
+/* Instagram: bloco editorial compacto, com contexto e uma chamada clara para o perfil. */
+.instagram-strip {
+  align-items: center;
+  background: var(--nude-light);
+  border: 1px solid rgb(214 188 173 / 55%);
+  border-radius: var(--radius-md);
+  display: grid;
+  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--max);
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+  padding-top: clamp(2rem, 4vw, 3.5rem);
+}
+.instagram-strip-copy { max-width: 640px; }
+.instagram-strip-copy h2 {
+  font-size: clamp(2rem, 3.2vw, 3.5rem);
+  line-height: .98;
+  margin: 1rem 0 .8rem;
+}
+.instagram-strip-copy p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+  max-width: 500px;
+}
+.instagram-strip-link {
+  font-size: clamp(1.5rem, 2.8vw, 3rem);
+  justify-self: end;
+  white-space: nowrap;
+}
+
+/* Ícone compartilhado indica, de forma imediata, que os CTAs de agendamento abrem o WhatsApp. */
+.icon-sprite {
+  height: 0;
+  position: absolute;
+  width: 0;
+}
+.whatsapp-button-icon {
+  fill: currentColor;
+  flex: 0 0 auto;
+  height: 20px;
+  width: 20px;
+}
+.floating-whatsapp .whatsapp-icon {
+  color: #fff;
+  fill: #fff !important;
+  height: 24px;
+  width: 24px;
+}
+.floating-whatsapp .whatsapp-mark {
+  display: block;
+  height: 25px;
+  width: 25px;
+}
+.header-cta {
+  gap: 1rem;
+}
+.header-cta .whatsapp-button-icon { height: 20px; width: 20px; }
+.floating-whatsapp {
+  align-items: center;
+  background: #25d366;
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgb(37 211 102 / 28%);
+  color: #fff;
+  height: 54px;
+  justify-content: center;
+  padding: 0;
+  width: 54px;
+}
+.floating-whatsapp:hover { background: #1fbd59; }
+
+@media (max-width: 850px) {
+  .faq-heading { position: static; }
+  .instagram-strip {
+    grid-template-columns: 1fr;
+  }
+  .instagram-strip-link { justify-self: start; }
+}
