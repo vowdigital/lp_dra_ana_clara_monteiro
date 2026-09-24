@@ -674,3 +674,30 @@ body, button, .main-nav, .section-label, .eyebrow, .button, .header-cta { font-f
   .approach { border-radius: 0 0 28px 28px; }
   .final-cta { border-radius: 28px 28px 0 0; }
 }
+
+/* Keep the full wordmark visible inside the fixed header. */
+.brand-logo {
+  align-items: center;
+  display: inline-flex;
+  height: 50px;
+  justify-content: center;
+  width: 190px;
+}
+.brand-logo img {
+  display: block;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  padding: 3px 0;
+  width: 100%;
+}
+.footer-logo { height: 54px; width: 190px; }
+@media (max-width: 850px) {
+  .brand-logo { height: 46px; width: 174px; }
+  .footer-logo { height: 50px; width: 174px; }
+}
+@media (max-width: 560px) {
+  .brand-logo { height: 44px; width: 168px; }
+  .footer-logo { height: 48px; width: 168px; }
+}
