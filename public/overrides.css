@@ -730,3 +730,165 @@ body, button, .main-nav, .section-label, .eyebrow, .button, .header-cta { font-f
 .clinic-gallery.is-carousel figure:nth-child(2)::after { content: "Recepção da Clínica Imagem · Dourados, MS"; }
 .clinic-gallery.is-carousel figure:nth-child(3)::after { content: "Fachada noturna da Clínica Imagem · Dourados, MS"; }
 .clinic-gallery.is-carousel figure:nth-child(4)::after { content: "Lobby da Clínica Imagem · Dourados, MS"; }
+
+/* Faciais e corporais têm blocos próprios, preservando a leitura e o ritmo da página. */
+.treatments-single .treatment-columns {
+  grid-template-columns: minmax(0, 1fr);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 900px;
+}
+.treatments-single .treatment-columns > div { width: 100%; }
+
+.treatment-item { scroll-margin-top: 110px; }
+.treatment-related {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem 1.25rem;
+  margin: 1.7rem auto 0;
+  max-width: 900px;
+}
+.treatment-related span,
+.treatment-related a {
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.treatment-related span { color: var(--muted); }
+.treatment-related a {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: .15rem;
+  transition: border-color .2s, color .2s;
+}
+.treatment-related a:hover,
+.treatment-related a:focus-visible {
+  border-color: var(--ink);
+  color: var(--muted);
+}
+
+/* Faixa social compacta, inspirada no destaque de Instagram da referência. */
+.instagram-strip {
+  align-items: center;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  padding-bottom: 2.5rem;
+  padding-top: 2.5rem;
+}
+.instagram-strip-link {
+  align-items: center;
+  display: inline-flex;
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.3vw, 3.6rem);
+  gap: 1rem;
+  letter-spacing: -.03em;
+}
+.instagram-strip-link span { font-family: var(--sans); font-size: 1.1rem; }
+@media (max-width: 560px) {
+  .instagram-strip { align-items: flex-start; flex-direction: column; gap: 1.1rem; }
+  .instagram-strip-link { font-size: clamp(1.8rem, 9vw, 2.8rem); }
+  .treatment-related { gap: .55rem .9rem; }
+}
+
+/* Menu de tratamentos com acesso direto às seções faciais e corporais. */
+.nav-dropdown {
+  position: relative;
+}
+.nav-dropdown-toggle {
+  align-items: center;
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  gap: .35rem;
+  opacity: .74;
+  padding: 0;
+  transition: opacity .2s, transform .2s;
+}
+.nav-dropdown-toggle:hover,
+.nav-dropdown-toggle:focus-visible,
+.nav-dropdown.is-open .nav-dropdown-toggle { opacity: 1; }
+.nav-dropdown-toggle span {
+  font-size: 14px;
+  line-height: 1;
+  transition: transform .2s;
+}
+.nav-dropdown.is-open .nav-dropdown-toggle span { transform: rotate(180deg); }
+.nav-dropdown-menu {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 14px 28px rgb(25 24 23 / .1);
+  display: grid;
+  gap: .15rem;
+  left: 50%;
+  min-width: 145px;
+  opacity: 0;
+  padding: .55rem;
+  pointer-events: none;
+  position: absolute;
+  /* Encostado ao gatilho para não existir uma área de fuga ao mover o cursor. */
+  top: 100%;
+  transform: translate(-50%, -8px);
+  transition: opacity .2s, transform .2s;
+  visibility: hidden;
+  z-index: 5;
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu,
+.nav-dropdown.is-open .nav-dropdown-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+  visibility: visible;
+}
+.nav-dropdown-menu a {
+  opacity: 1;
+  padding: .55rem .65rem;
+  white-space: nowrap;
+}
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a:focus-visible { background: var(--nude-light); }
+
+@media (max-width: 850px) {
+  .nav-dropdown { width: 100%; }
+  .nav-dropdown-toggle { padding: .2rem 0; }
+  .nav-dropdown-menu {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    display: none;
+    gap: 0;
+    left: 0;
+    min-width: 0;
+    opacity: 1;
+    padding: .25rem 0 .35rem 1rem;
+    pointer-events: auto;
+    position: static;
+    transform: none;
+    visibility: visible;
+  }
+  .nav-dropdown.is-open .nav-dropdown-menu { display: grid; }
+  .nav-dropdown-menu a { padding: .35rem 0; }
+  .nav-dropdown:hover .nav-dropdown-menu,
+  .nav-dropdown:focus-within .nav-dropdown-menu { transform: none; }
+}
+
+/* Centraliza o título da seção de experiência sem deslocar seu marcador. */
+@media (min-width: 851px) {
+  .journey-heading {
+    display: block;
+    position: relative;
+  }
+  .journey-heading .section-label {
+    left: 0;
+    position: absolute;
+    top: .35rem;
+  }
+  .journey-heading h2 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

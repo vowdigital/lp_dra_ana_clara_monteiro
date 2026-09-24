@@ -3,7 +3,7 @@ import { whatsappUrl } from './site-data.js';
 export function renderTreatments(container, items, group) {
   container.innerHTML = items.map(([title, text], index) => {
     const id = `${group}-${index}`;
-    return `<article class="treatment-item"><button type="button" aria-expanded="false" aria-controls="${id}">${title}<span aria-hidden="true">+</span></button><p id="${id}" hidden>${text}<a class="treatment-cta" data-whatsapp="treatment_whatsapp_click" href="${whatsappUrl}" target="_blank" rel="noopener noreferrer">Agendar uma avaliação <span aria-hidden="true">↗</span></a></p></article>`;
+    return `<article class="treatment-item" id="${group}-item-${index}"><button type="button" aria-expanded="false" aria-controls="${id}">${title}<span aria-hidden="true">+</span></button><p id="${id}" hidden>${text}<a class="treatment-cta" data-whatsapp="treatment_whatsapp_click" href="${whatsappUrl}" target="_blank" rel="noopener noreferrer">Agendar uma avaliação <span aria-hidden="true">↗</span></a></p></article>`;
   }).join('');
 }
 

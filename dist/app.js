@@ -150,6 +150,17 @@ document.querySelectorAll('.treatment-item button, .faq-question').forEach(butto
   content.classList.toggle('is-open', !open);
 }));
 
+function openTreatmentFromHash() {
+  if (!location.hash) return;
+  const target = document.querySelector(location.hash);
+  const button = target?.matches('.treatment-item') ? target.querySelector('button') : null;
+  if (!button) return;
+  if (button.getAttribute('aria-expanded') !== 'true') button.click();
+  window.requestAnimationFrame(() => target.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+}
+window.addEventListener('hashchange', openTreatmentFromHash);
+openTreatmentFromHash();
+
 const resultsSection = document.querySelector('[data-results-section]');
 if (site.publication.resultsApprovedForPublication) {
   resultsSection.hidden = false;
@@ -220,6 +231,30 @@ menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   menuButton.setAttribute('aria-expanded', 'false');
   menu.classList.remove('is-open');
 }));
+
+const treatmentDropdown = document.querySelector('.nav-dropdown');
+const treatmentDropdownToggle = document.querySelector('.nav-dropdown-toggle');
+if (treatmentDropdown && treatmentDropdownToggle) {
+  const closeTreatmentDropdown = () => {
+    treatmentDropdown.classList.remove('is-open');
+    treatmentDropdownToggle.setAttribute('aria-expanded', 'false');
+  };
+  treatmentDropdownToggle.addEventListener('click', event => {
+    event.stopPropagation();
+    const isOpen = treatmentDropdown.classList.toggle('is-open');
+    treatmentDropdownToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+  treatmentDropdown.querySelectorAll('a').forEach(a => a.addEventListener('click', closeTreatmentDropdown));
+  document.addEventListener('click', event => {
+    if (!treatmentDropdown.contains(event.target)) closeTreatmentDropdown();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      closeTreatmentDropdown();
+      treatmentDropdownToggle.focus();
+    }
+  });
+}
 document.querySelector('[data-year]').textContent = new Date().getFullYear();
 
 if ('IntersectionObserver' in window) {
