@@ -15,7 +15,7 @@ function track(event) {
   });
 }
 
-function mountCarousel(root, slides, label) {
+function mountCarousel(root, slides, label, intervalMs = 6000) {
   if (!root || slides.length < 2) return;
   root.classList.add('is-carousel');
   root.setAttribute('role', 'region');
@@ -65,7 +65,7 @@ function mountCarousel(root, slides, label) {
   function start() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     window.clearInterval(timer);
-    timer = window.setInterval(() => goTo(current + 1), 6000);
+    timer = window.setInterval(() => goTo(current + 1), intervalMs);
   }
   function stop() { window.clearInterval(timer); }
 
@@ -111,13 +111,13 @@ function setupHeroCarousel() {
     root.append(slide);
     return slide;
   })];
-  mountCarousel(root, slides, 'Retratos da Dra. Ana Clara Monteiro');
+  mountCarousel(root, slides, 'Retratos da Dra. Ana Clara Monteiro', 5000);
 }
 
 function setupClinicCarousel() {
   const root = document.querySelector('.clinic-gallery');
   if (!root) return;
-  mountCarousel(root, [...root.querySelectorAll('figure')], 'Fotos da Clínica Imagem');
+  mountCarousel(root, [...root.querySelectorAll('figure')], 'Fotos da Clínica Imagem', 4000);
 }
 
 document.querySelectorAll('[data-whatsapp]').forEach(link => {
