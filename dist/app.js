@@ -156,6 +156,19 @@ if (site.publication.resultsApprovedForPublication) {
   renderResults(document.querySelector('[data-results-gallery]'), results);
   const resultTabs = [...document.querySelectorAll('[data-result-tab]')];
   const resultPanels = [...document.querySelectorAll('[data-result-panel]')];
+  let activeResultPanel = resultPanels.find(panel => !panel.hasAttribute('data-result-hidden')) || resultPanels[0];
+  let resultTimer;
+  const resultAutoplayEnabled = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const stopResultAutoplay = () => window.clearInterval(resultTimer);
+  const startResultAutoplay = () => {
+    if (!resultAutoplayEnabled || resultTabs.length < 2) return;
+    stopResultAutoplay();
+    resultTimer = window.setInterval(() => {
+      const currentTab = resultTabs.find(tab => tab.getAttribute('aria-selected') === 'true') || resultTabs[0];
+      const currentIndex = resultTabs.indexOf(currentTab);
+      selectResult(resultTabs[(currentIndex + 1) % resultTabs.length]);
+    }, 5000);
+  };
   const selectResult = tab => {
     const selected = tab.dataset.resultTab;
     resultTabs.forEach(item => {
@@ -163,7 +176,19 @@ if (site.publication.resultsApprovedForPublication) {
       item.setAttribute('aria-selected', String(active));
       item.tabIndex = active ? 0 : -1;
     });
-    resultPanels.forEach(panel => { panel.hidden = panel.dataset.resultPanel !== selected; });
+    const nextResultPanel = resultPanels.find(panel => panel.dataset.resultPanel === selected);
+    if (!nextResultPanel || nextResultPanel === activeResultPanel) return;
+    const previousResultPanel = activeResultPanel;
+    previousResultPanel?.classList.add('is-leaving');
+    previousResultPanel?.setAttribute('data-result-hidden', '');
+    previousResultPanel?.setAttribute('aria-hidden', 'true');
+    nextResultPanel.removeAttribute('data-result-hidden');
+    nextResultPanel.setAttribute('aria-hidden', 'false');
+    nextResultPanel.classList.add('is-entering');
+    window.requestAnimationFrame(() => nextResultPanel.classList.remove('is-entering'));
+    window.setTimeout(() => previousResultPanel?.classList.remove('is-leaving'), 560);
+    activeResultPanel = nextResultPanel;
+    startResultAutoplay();
   };
   resultTabs.forEach((tab, index) => {
     tab.addEventListener('click', () => selectResult(tab));
@@ -175,6 +200,13 @@ if (site.publication.resultsApprovedForPublication) {
       selectResult(resultTabs[next]);
     });
   });
+  resultsSection.addEventListener('mouseenter', stopResultAutoplay);
+  resultsSection.addEventListener('mouseleave', startResultAutoplay);
+  resultsSection.addEventListener('focusin', stopResultAutoplay);
+  resultsSection.addEventListener('focusout', event => {
+    if (!resultsSection.contains(event.relatedTarget)) startResultAutoplay();
+  });
+  startResultAutoplay();
 }
 
 const header = document.querySelector('[data-header]');
