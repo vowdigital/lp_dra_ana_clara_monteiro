@@ -49,3 +49,11 @@ O destino de produção é a Vercel, com gestão de hospedagem/domínio pela Vow
 - Output directory: `dist`
 
 O domínio planejado é `anaclaramonteiro.com.br`.
+
+## Direção visual
+
+A interface usa uma linguagem editorial contemporânea, com tipografia fluida, hero mais imersivo, composições assimétricas, imagens com molduras orgânicas, cards mais leves e microinterações de hover e scroll. A paleta atual prioriza branco, preto e tons neutros para manter consistência com a marca.
+
+O projeto permanece em HTML, CSS e JavaScript nativos. Essa escolha preserva carregamento rápido, SEO e simplicidade de deploy; React ou Vue podem ser considerados caso a página passe a exigir interações ou componentes dinâmicos mais complexos.
+
+O footer usa fundo claro, tipografia escura e o logo original para manter legibilidade e alinhamento com o header.
