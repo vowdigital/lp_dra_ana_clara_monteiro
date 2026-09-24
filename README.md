@@ -57,3 +57,7 @@ A interface usa uma linguagem editorial contemporânea, com tipografia fluida, h
 O projeto permanece em HTML, CSS e JavaScript nativos. Essa escolha preserva carregamento rápido, SEO e simplicidade de deploy; React ou Vue podem ser considerados caso a página passe a exigir interações ou componentes dinâmicos mais complexos.
 
 O footer usa fundo claro, tipografia escura e o logo original para manter legibilidade e alinhamento com o header.
+
+### Alinhamento ao manual da marca
+
+A interface tambem aplica os tokens da identidade visual Premium: off-white `#FFFDFB`, taupe `#D6BCAD`, monograma institucional como textura sutil, tipografia editorial de alto contraste e componentes com bordas e sombras mais discretas.

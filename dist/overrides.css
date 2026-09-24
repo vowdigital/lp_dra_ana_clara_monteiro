@@ -559,3 +559,118 @@ main > section.hero {
   main > section.section { padding-bottom: 3.75rem; padding-top: 3.75rem; }
   main > section.hero { padding-bottom: 3.75rem; padding-top: 5.75rem; }
 }
+
+/* Brand alignment: Ana Clara Premium identity guide. */
+:root {
+  --ink: #191817;
+  --muted: #6d625c;
+  --paper: #fffdfb;
+  --line: #d6bcad;
+  --nude: #d6bcad;
+  --nude-light: #f4eeeb;
+  --radius-lg: 24px;
+  --radius-md: 10px;
+  --serif: "Recline", "Bodoni 72", Didot, Baskerville, Georgia, serif;
+  --sans: "Blooming Elegant Sans", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+}
+
+body { background: var(--paper); color: var(--ink); }
+h1, h2, h3, .hero-note, .lead, .treatment-item button, .differential p, .journey-list li, .faq-question { font-family: var(--serif); }
+body, button, .main-nav, .section-label, .eyebrow, .button, .header-cta { font-family: var(--sans); }
+
+.site-header {
+  background: rgb(255 253 251 / .92);
+  border-bottom-color: rgb(214 188 173 / .65);
+}
+.site-header.is-scrolled { background: rgb(255 253 251 / .97); }
+.header-cta,
+.button,
+.results-selector button {
+  border-radius: 4px;
+  letter-spacing: .06em;
+}
+.button,
+.header-cta { min-height: 46px; }
+
+.hero-image { box-shadow: 14px 14px 0 var(--nude); }
+.about-image { box-shadow: -14px 14px 0 var(--nude); }
+.about {
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+}
+.about::before {
+  background: url('/images/brand/icone.png') repeat;
+  background-size: 170px;
+  content: "";
+  inset: 0;
+  opacity: .045;
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+}
+
+.approach {
+  background: var(--nude);
+  border-radius: 0 0 42px 42px;
+  color: var(--ink);
+}
+.approach .section-label span,
+.approach .eyebrow,
+.approach-heading em,
+.method-list span { color: #705e55; }
+.method-list,
+.method-list li { border-color: rgb(25 24 23 / .28); }
+.approach .button-light {
+  background: var(--paper);
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.principles span {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  color: var(--muted);
+  padding-inline: 0;
+}
+.treatment-columns > div,
+.differential,
+.journey-list li,
+.result-case {
+  background: var(--nude-light);
+  border: 1px solid rgb(214 188 173 / .55);
+  border-radius: 10px;
+  box-shadow: none;
+}
+.treatment-item:hover,
+.differential:hover,
+.faq-item:hover,
+.faq-item:has(.faq-question:focus-visible) { background: var(--paper); }
+.differential:hover { transform: translateY(-2px); }
+.clinic-gallery figure {
+  border-color: var(--nude);
+  border-radius: 16px;
+  box-shadow: 0 14px 30px rgb(112 94 85 / .14);
+}
+
+.final-cta {
+  background: var(--nude);
+  border-radius: 42px 42px 0 0;
+  color: var(--ink);
+}
+.final-cta .button-dark {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.final-cta .button-dark:hover { background: #3b312d; border-color: #3b312d; }
+.final-mark { color: rgb(112 94 85 / .22); }
+.footer { background: var(--paper); color: var(--ink); }
+.footer small { color: var(--muted); }
+
+@media (max-width: 850px) {
+  .approach { border-radius: 0 0 28px 28px; }
+  .final-cta { border-radius: 28px 28px 0 0; }
+}
