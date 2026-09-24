@@ -1,0 +1,114 @@
+/* Progressive enhancement and production QA refinements. */
+html:not(.js) .reveal { opacity: 1; transform: none; }
+.result-context { color: var(--muted); font-size: 12px; margin: 14px 0 0; }
+.result-disclaimer { margin: 0; }
+[hidden] { display: none !important; }
+.location { align-items: end; display: grid; gap: clamp(2rem, 5vw, 5rem); grid-template-columns: minmax(250px, 1fr) minmax(220px, .7fr) minmax(350px, 1.1fr); }
+.clinic-gallery { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+.clinic-gallery figure { margin: 0; overflow: hidden; }
+.clinic-gallery img { aspect-ratio: 680 / 453; display: block; height: 100%; object-fit: cover; width: 100%; }
+@media (max-width: 560px) {
+  .result-shot figcaption { bottom: 7px; font-size: 9px; left: 7px; }
+  .result-disclaimer { font-size: 10px; }
+}
+@media (max-width: 850px) {
+  .location { align-items: start; grid-template-columns: 1fr; }
+  .clinic-gallery { width: 100%; }
+}
+@media (max-width: 560px) {
+  .clinic-gallery { grid-template-columns: 1fr; }
+}
+
+/* Location block: editorial beige layout inspired by the supplied reference. */
+.location {
+  align-items: center;
+  background: var(--paper);
+  color: var(--ink);
+  display: grid;
+  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-columns: minmax(230px, .9fr) minmax(240px, .8fr) minmax(360px, 1.1fr);
+  justify-content: initial;
+  max-width: none;
+}
+.location .eyebrow { color: var(--ink); }
+.location-heading h2 {
+  color: var(--ink);
+  font-size: clamp(3.7rem, 6vw, 7rem);
+  margin: 1rem 0 1.5rem;
+}
+.location-lead { color: var(--muted); max-width: 400px; }
+.location-details { align-self: end; }
+.location-list { margin: 0; }
+.location-list > div {
+  border-bottom: 1px solid var(--line);
+  padding: 1rem 0;
+}
+.location-list > div:first-child { border-top: 1px solid var(--line); }
+.location-list dt {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.location-list dd { font-size: 14px; line-height: 1.55; margin: .4rem 0 0; }
+.location-list a { border-bottom: 1px solid currentColor; }
+.location-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1.6rem; }
+.location-actions .button { min-height: 44px; }
+.location-actions .button-dark { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.location-actions .button-dark:hover { background: #373330; border-color: #373330; }
+.location-actions .button-outline { border-color: var(--ink); color: var(--ink); }
+.location-map { min-height: 330px; }
+.location-map iframe { border: 0; display: block; min-height: 330px; width: 100%; }
+.clinic-gallery {
+  display: block;
+  grid-column: 3;
+  margin-top: 0;
+  width: 100%;
+}
+.clinic-gallery figure {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 10px;
+  position: relative;
+}
+.clinic-gallery figure::after {
+  color: var(--muted);
+  content: "Fachada da Clínica Imagem · Dourados, MS";
+  display: block;
+  font-size: 10px;
+  letter-spacing: .08em;
+  padding: 10px 2px 1px;
+  text-transform: uppercase;
+}
+.clinic-gallery figure:nth-child(2) { display: none; }
+.clinic-gallery figure:first-child img { aspect-ratio: 3 / 2; }
+@media (min-width: 851px) {
+  .location { grid-template-rows: auto auto; }
+  .location-heading { grid-column: 1; grid-row: 1; }
+  .location-details { align-self: start; grid-column: 1; grid-row: 2; }
+  .clinic-gallery { grid-column: 2; grid-row: 1 / span 2; }
+  .location-map { grid-column: 3; grid-row: 1 / span 2; }
+}
+@media (max-width: 1100px) {
+  .location { grid-template-columns: minmax(210px, .85fr) minmax(235px, .9fr) minmax(300px, 1fr); }
+}
+@media (max-width: 850px) {
+  .location { grid-template-columns: 1fr; }
+  .location-heading, .location-details, .location-map, .clinic-gallery { grid-column: auto; grid-row: auto; }
+  .location-map, .location-map iframe { min-height: 360px; }
+}
+@media (max-width: 560px) {
+  .location { gap: 2.2rem; }
+  .location-heading h2 { font-size: clamp(3rem, 15vw, 4.5rem); }
+  .location-actions { align-items: stretch; flex-direction: column; }
+  .location-actions .button { width: 100%; }
+}
+
+/* Temporarily hide the map and restore the previous three-column arrangement. */
+.location-map { display: none !important; }
+@media (min-width: 851px) {
+  .location { grid-template-rows: auto; }
+  .location-heading { grid-column: 1; grid-row: auto; }
+  .location-details { align-self: end; grid-column: 2; grid-row: auto; }
+  .clinic-gallery { grid-column: 3; grid-row: auto; }
+}

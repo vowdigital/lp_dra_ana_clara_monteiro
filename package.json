@@ -1,0 +1,10 @@
+{
+  "name": "landing-page-dra-ana-clara-monteiro",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node server.mjs",
+    "build": "node build.mjs",
+    "start": "node server.mjs"
+  }
+}
