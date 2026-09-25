@@ -1187,3 +1187,33 @@ h1 { font-size: clamp(2.8rem, 5vw, 5.8rem); }
     padding: 20px 0 !important;
   }
 }
+
+/* Ritmo mais compacto entre as seções 3 a 9 e a localização. */
+main > section.facial,
+main > section.treatments,
+main > section.differentials,
+main > section.results,
+main > section.testimonials,
+main > section.journey,
+main > section.location {
+  padding-bottom: clamp(2.5rem, 3.5vw, 4rem) !important;
+  padding-top: clamp(2.5rem, 3.5vw, 4rem) !important;
+}
+.treatment-columns { margin-top: 24px; }
+.differentials-layout { margin-top: 20px; }
+.results-gallery { margin-top: 24px; }
+.journey-list { margin-top: 24px; }
+@media (max-width: 850px) {
+  main > section.facial,
+  main > section.treatments,
+  main > section.differentials,
+  main > section.results,
+  main > section.testimonials,
+  main > section.journey,
+  main > section.location {
+    padding-bottom: 2.5rem !important;
+    padding-top: 2.5rem !important;
+  }
+  .treatment-columns { margin-top: 20px; }
+  .journey-list { margin-top: 20px; }
+}
