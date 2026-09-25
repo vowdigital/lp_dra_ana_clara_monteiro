@@ -1130,3 +1130,60 @@ h1 { font-size: clamp(2.8rem, 5vw, 5.8rem); }
   }
   .instagram-strip-link { justify-self: start; }
 }
+
+/* Seção 2: título mais próximo do topo e retrato preenchendo o espaço livre. */
+.approach-heading {
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+}
+.approach-heading h2 {
+  font-size: clamp(2.45rem, 3vw, 3.5rem) !important;
+  margin-top: clamp(3rem, 4.5vw, 5rem) !important;
+}
+.approach-image {
+  border-radius: 26px 26px 86px 26px;
+  margin: clamp(1.8rem, 3vw, 3rem) 0 0;
+  max-width: 460px;
+  overflow: hidden;
+  width: 100%;
+}
+.approach-image img {
+  aspect-ratio: 4 / 5;
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  width: 100%;
+}
+@media (max-width: 850px) {
+  .approach-heading h2 {
+    font-size: clamp(2.35rem, 8vw, 3.5rem) !important;
+    margin-top: 3rem !important;
+  }
+  .approach-image { max-width: 460px; }
+}
+
+/* Mais presença para o conteúdo e os tópicos da seção 2. */
+.approach-body .lead {
+  font-size: clamp(2rem, 2.8vw, 3.2rem) !important;
+  line-height: 1.02;
+  margin-bottom: clamp(2.2rem, 3.5vw, 3.6rem);
+}
+.approach-body .method-list li {
+  font-size: clamp(1rem, 1.3vw, 1.18rem) !important;
+  padding: 21px 0 !important;
+}
+.approach-body .method-list span {
+  font-size: 11px;
+  width: 48px;
+}
+@media (max-width: 850px) {
+  .approach-body .lead {
+    font-size: clamp(2rem, 5.8vw, 2.8rem) !important;
+  }
+  .approach-body .method-list li {
+    font-size: 1.05rem !important;
+    padding: 20px 0 !important;
+  }
+}
