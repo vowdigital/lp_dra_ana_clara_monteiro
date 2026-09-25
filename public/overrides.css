@@ -2,6 +2,8 @@
 html:not(.js) .reveal { opacity: 1; transform: none; }
 .result-context { color: var(--muted); font-size: 12px; margin: 14px 0 0; }
 .result-disclaimer { margin: 0; }
+.result-case > .result-context,
+.result-case > .result-disclaimer { padding-left: 14px; padding-right: 14px; }
 [hidden] { display: none !important; }
 .location { align-items: end; display: grid; gap: clamp(2rem, 5vw, 5rem); grid-template-columns: minmax(250px, 1fr) minmax(220px, .7fr) minmax(350px, 1.1fr); }
 .clinic-gallery { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
@@ -336,6 +338,18 @@ a:focus-visible, button:focus-visible { outline-color: #696963; }
 .differentials-layout { margin-top: 36px; }
 .results { padding-bottom: clamp(4.5rem, 8vw, 8rem); padding-top: clamp(4.5rem, 8vw, 8rem); }
 .results-gallery { margin-top: 38px; }
+.results-category-selector { display: flex; flex-wrap: wrap; gap: .7rem; margin-bottom: 1.5rem; margin-top: 2.25rem; }
+.results-category-selector button { background: transparent; border: 1px solid var(--ink); border-radius: 999px; color: var(--ink); cursor: pointer; font: inherit; letter-spacing: .04em; padding: .8rem 1.3rem; text-transform: uppercase; transition: background .2s, color .2s; }
+.results-category-selector button[aria-selected="true"], .results-category-selector button:hover { background: var(--ink); color: var(--paper); }
+.results-groups { display: grid; gap: clamp(3.5rem, 7vw, 7rem); }
+.results-group { display: grid; gap: 1.25rem; }
+.results-group h3 { font-family: var(--sans); font-size: clamp(1rem, 1.5vw, 1.35rem); font-weight: 500; letter-spacing: .08em; margin: 0; text-transform: uppercase; }
+.results-group .results-gallery { margin-top: 0; }
+.results-group[hidden] { display: none; }
+.result-comparison { align-items: stretch; }
+.result-shot { aspect-ratio: 665 / 591; background: var(--nude-light); overflow: hidden; }
+.result-shot picture { align-items: center; display: flex; height: 100%; justify-content: center; width: 100%; }
+.result-shot img { display: block; height: 100% !important; object-fit: cover; object-position: center; width: 100%; }
 .results-link { margin-top: 30px; }
 .journey { padding-bottom: clamp(4.5rem, 8vw, 8rem); padding-top: clamp(4.5rem, 8vw, 8rem); }
 .journey-list { margin-top: 44px; }

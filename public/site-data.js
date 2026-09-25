@@ -51,8 +51,35 @@ export const faqs = [
 export const results = [
   {
     id: '01',
-    before: { webp: '/images/results/result-case-02-before.webp', webpSmall: '/images/results/result-case-02-before-360.webp', jpg: '/images/results/result-case-02-before.jpg', width: 665, height: 591 },
-    after: { webp: '/images/results/result-case-02-after.webp', webpSmall: '/images/results/result-case-02-after-360.webp', jpg: '/images/results/result-case-02-after.jpg', width: 665, height: 591 }
+    category: 'facial',
+    procedure: 'Reestruturação facial',
+    context: 'Resultado facial',
+    before: { jpg: '/images/results/result-case-06-before.jpg', width: 665, height: 594 },
+    after: { jpg: '/images/results/result-case-06-after.jpg', width: 665, height: 589 }
+  },
+  {
+    id: '04',
+    category: 'facial',
+    procedure: 'Lábios',
+    context: 'Resultado facial',
+    before: { jpg: '/images/results/result-case-07-before.jpg', width: 665, height: 578 },
+    after: { jpg: '/images/results/result-case-07-after.jpg', width: 665, height: 593 }
+  },
+  {
+    id: '02',
+    category: 'abdomen',
+    procedure: 'Abdome',
+    context: 'Resultado corporal',
+    before: { jpg: '/images/results/result-case-04-before.jpg', width: 1290, height: 1147 },
+    after: { jpg: '/images/results/result-case-04-after.jpg', width: 1290, height: 1141 }
+  },
+  {
+    id: '03',
+    category: 'gluteos',
+    procedure: 'Glúteos',
+    context: 'Resultado corporal',
+    before: { jpg: '/images/results/result-case-05-before.jpg', width: 1289, height: 1015 },
+    after: { jpg: '/images/results/result-case-05-after.jpg', width: 1289, height: 1138 }
   }
 ];
 

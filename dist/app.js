@@ -242,58 +242,68 @@ openTreatmentFromHash();
 const resultsSection = document.querySelector('[data-results-section]');
 if (site.publication.resultsApprovedForPublication) {
   resultsSection.hidden = false;
-  renderResults(document.querySelector('[data-results-gallery]'), results);
-  const resultTabs = [...document.querySelectorAll('[data-result-tab]')];
-  const resultPanels = [...document.querySelectorAll('[data-result-panel]')];
-  let activeResultPanel = resultPanels.find(panel => !panel.hasAttribute('data-result-hidden')) || resultPanels[0];
-  let resultTimer;
-  const resultAutoplayEnabled = resultTabs.length > 1;
-  const stopResultAutoplay = () => window.clearInterval(resultTimer);
-  const startResultAutoplay = () => {
-    if (!resultAutoplayEnabled || resultTabs.length < 2) return;
-    stopResultAutoplay();
-    resultTimer = window.setInterval(() => {
-      const currentTab = resultTabs.find(tab => tab.getAttribute('aria-selected') === 'true') || resultTabs[0];
-      const currentIndex = resultTabs.indexOf(currentTab);
-      selectResult(resultTabs[(currentIndex + 1) % resultTabs.length]);
-    }, 5000);
-  };
-  const selectResult = tab => {
-    const selected = tab.dataset.resultTab;
-    resultTabs.forEach(item => {
+  const resultGroups = [
+    { id: 'facial', label: 'Resultados faciais', option: 'Facial', items: results.filter(item => item.category === 'facial') },
+    { id: 'abdomen', label: 'Resultados de abdome', option: 'Abdome', items: results.filter(item => item.category === 'abdomen') },
+    { id: 'gluteos', label: 'Resultados de glúteos', option: 'Glúteos', items: results.filter(item => item.category === 'gluteos') }
+  ].filter(group => group.items.length);
+  const categorySelector = document.querySelector('[data-results-category-selector]');
+  const groupsContainer = document.querySelector('[data-results-groups]');
+  const activeGroup = resultGroups.find(group => group.id === 'facial') || resultGroups[0];
+  categorySelector.innerHTML = resultGroups.map(group => `<button type="button" role="tab" id="results-category-tab-${group.id}" aria-selected="${group.id === activeGroup.id}" aria-controls="results-category-panel-${group.id}" tabindex="${group.id === activeGroup.id ? '0' : '-1'}" data-results-category="${group.id}">${group.option}</button>`).join('');
+  groupsContainer.innerHTML = resultGroups.map(group => `<section class="results-group" id="results-category-panel-${group.id}" aria-labelledby="results-category-tab-${group.id}" data-results-category-panel="${group.id}"${group.id !== activeGroup.id ? ' hidden' : ''}><h3 id="results-group-${group.id}">${group.label}</h3><div data-results-gallery="${group.id}"></div></section>`).join('');
+  resultGroups.forEach(group => {
+    const groupContainer = groupsContainer.querySelector(`[data-results-gallery="${group.id}"]`);
+    renderResults(groupContainer, group.items);
+    const caseTabs = [...groupContainer.querySelectorAll('[data-result-tab]')];
+    const casePanels = [...groupContainer.querySelectorAll('[data-result-panel]')];
+    if (caseTabs.length < 2) return;
+    const selectCase = tab => {
+      const selected = tab.dataset.resultTab;
+      caseTabs.forEach(item => {
+        const active = item === tab;
+        item.setAttribute('aria-selected', String(active));
+        item.tabIndex = active ? 0 : -1;
+      });
+      casePanels.forEach(panel => {
+        const active = panel.dataset.resultPanel === selected;
+        panel.toggleAttribute('data-result-hidden', !active);
+        panel.setAttribute('aria-hidden', String(!active));
+      });
+    };
+    caseTabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectCase(tab));
+      tab.addEventListener('keydown', event => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const next = event.key === 'Home' ? 0 : event.key === 'End' ? caseTabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + caseTabs.length) % caseTabs.length;
+        caseTabs[next].focus();
+        selectCase(caseTabs[next]);
+      });
+    });
+  });
+  const categoryTabs = [...categorySelector.querySelectorAll('[data-results-category]')];
+  const selectCategory = tab => {
+    const selected = tab.dataset.resultsCategory;
+    categoryTabs.forEach(item => {
       const active = item === tab;
       item.setAttribute('aria-selected', String(active));
       item.tabIndex = active ? 0 : -1;
     });
-    const nextResultPanel = resultPanels.find(panel => panel.dataset.resultPanel === selected);
-    if (!nextResultPanel || nextResultPanel === activeResultPanel) return;
-    const previousResultPanel = activeResultPanel;
-    previousResultPanel?.classList.add('is-leaving');
-    previousResultPanel?.setAttribute('data-result-hidden', '');
-    previousResultPanel?.setAttribute('aria-hidden', 'true');
-    nextResultPanel.removeAttribute('data-result-hidden');
-    nextResultPanel.setAttribute('aria-hidden', 'false');
-    nextResultPanel.classList.add('is-entering');
-    window.requestAnimationFrame(() => nextResultPanel.classList.remove('is-entering'));
-    window.setTimeout(() => previousResultPanel?.classList.remove('is-leaving'), 560);
-    activeResultPanel = nextResultPanel;
-    startResultAutoplay();
+    groupsContainer.querySelectorAll('[data-results-category-panel]').forEach(panel => {
+      panel.hidden = panel.dataset.resultsCategoryPanel !== selected;
+    });
   };
-  resultTabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => selectResult(tab));
+  categoryTabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => selectCategory(tab));
     tab.addEventListener('keydown', event => {
       if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
       event.preventDefault();
-      const next = event.key === 'Home' ? 0 : event.key === 'End' ? resultTabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + resultTabs.length) % resultTabs.length;
-      resultTabs[next].focus();
-      selectResult(resultTabs[next]);
+      const next = event.key === 'Home' ? 0 : event.key === 'End' ? categoryTabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + categoryTabs.length) % categoryTabs.length;
+      categoryTabs[next].focus();
+      selectCategory(categoryTabs[next]);
     });
   });
-  resultsSection.addEventListener('focusin', stopResultAutoplay);
-  resultsSection.addEventListener('focusout', event => {
-    if (!resultsSection.contains(event.relatedTarget)) startResultAutoplay();
-  });
-  startResultAutoplay();
 }
 
 const header = document.querySelector('[data-header]');
