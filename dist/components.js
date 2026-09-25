@@ -32,3 +32,8 @@ export function renderTestimonials(section, items) {
   section.hidden = false;
   section.querySelector('[data-testimonials-list]').innerHTML = items.map(({ quote, author }) => `<blockquote><p>“${quote}”</p><footer>${author}</footer></blockquote>`).join('');
 }
+
+export function renderInstagramPosts(container, posts) {
+  if (!container || !posts.length) return;
+  container.innerHTML = `<div class="instagram-feed-viewport"><div class="instagram-feed-track">${posts.map(post => `<article class="instagram-post" style="--post-ratio:${post.ratio || 1}"><a href="${post.url}" target="_blank" rel="noopener noreferrer" data-instagram-post="${post.id}" aria-label="${post.label}"><figure><img src="${post.image}" alt="${post.alt}" loading="lazy" decoding="async" /></figure></a></article>`).join('')}</div></div><div class="instagram-feed-controls" aria-label="Navegação dos posts do Instagram"><button type="button" data-instagram-prev aria-label="Post anterior">←</button><button type="button" data-instagram-next aria-label="Próximo post">→</button></div>`;
+}

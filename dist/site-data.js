@@ -63,3 +63,15 @@ export const results = [
 
 // Intencionalmente vazio até receber material autorizado. O componente permanece pronto.
 export const testimonials = [];
+
+export const instagramPosts = [
+  { id: '01', label: 'Apresentação da doutora', image: '/images/instagram/post-01.jpg', ratio: 0.802, url: 'https://www.instagram.com/dra.anaclaramonteiro.c/p/DVeB1HxEc8J/', alt: 'Post de apresentação da Dra. Ana Clara Monteiro' },
+  { id: '02', label: 'Beleza funcional', image: '/images/instagram/post-02.jpg', ratio: 0.75, url: 'https://www.instagram.com/dra.anaclaramonteiro.c/p/DdkVazREUkE/', alt: 'Post da Dra. Ana Clara Monteiro sobre beleza funcional' },
+  { id: '03', label: 'Olhar individualizado', image: '/images/instagram/post-03.jpg', ratio: 0.8, url: 'https://www.instagram.com/dra.anaclaramonteiro.c/p/DdXIvWPn60k/', alt: 'Retrato publicado pela Dra. Ana Clara Monteiro' },
+  { id: '04', label: 'Naturalidade e identidade', image: '/images/instagram/post-04.jpg', ratio: 0.8, url: 'https://www.instagram.com/dra.anaclaramonteiro.c/p/DdHFIaREUAo/', alt: 'Retrato publicado pela Dra. Ana Clara Monteiro' },
+  { id: '05', label: 'Conteúdo em vídeo', image: '/images/instagram/post-05.jpg', ratio: 0.562, url: 'https://www.instagram.com/dra.anaclaramonteiro.c/reel/DdbbGpnR9Z5/', alt: 'Reel da Dra. Ana Clara Monteiro' },
+  { id: '06', label: 'Bastidores do consultório', image: '/images/instagram/post-06.jpg', ratio: 0.563, url: 'https://www.instagram.com/dra.anaclaramonteiro.c/reel/Ddmwgd_Br03/', alt: 'Dra. Ana Clara Monteiro em seu consultório' },
+  { id: '07', label: 'Histórias que inspiram', image: '/images/instagram/post-07.jpg', ratio: 0.75, url: 'https://www.instagram.com/dra.anaclaramonteiro.c/p/DdZWWRiEXci/', alt: 'Publicação pessoal da Dra. Ana Clara Monteiro' },
+  { id: '08', label: 'Presença e cuidado', image: '/images/instagram/post-08.jpg', ratio: 0.563, url: 'https://www.instagram.com/dra.anaclaramonteiro.c/reel/DdTzCDORUmD/', alt: 'Dra. Ana Clara Monteiro em um retrato no consultório' },
+  { id: '09', label: 'Vida e propósito', image: '/images/instagram/post-09.jpg', ratio: 0.8, url: 'https://www.instagram.com/dra.anaclaramonteiro.c/p/DdO6rHxkQhW/', alt: 'Publicação pessoal da Dra. Ana Clara Monteiro' }
+];

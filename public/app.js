@@ -1,5 +1,5 @@
-import { site, whatsappUrl, treatments, differentials, journey, faqs, results, testimonials } from './site-data.js';
-import { renderTreatments, renderDifferentials, renderJourney, renderFaq, renderResults, renderTestimonials } from './components.js';
+import { site, whatsappUrl, treatments, differentials, journey, faqs, results, testimonials, instagramPosts } from './site-data.js';
+import { renderTreatments, renderDifferentials, renderJourney, renderFaq, renderResults, renderTestimonials, renderInstagramPosts } from './components.js';
 
 document.documentElement.classList.add('js');
 document.querySelector('.location')?.setAttribute('id', 'localizacao');
@@ -138,8 +138,86 @@ renderDifferentials(document.querySelector('[data-differentials]'), differential
 renderJourney(document.querySelector('[data-journey]'), journey);
 renderFaq(document.querySelector('[data-faq]'), faqs);
 renderTestimonials(document.querySelector('[data-testimonials]'), testimonials);
+renderInstagramPosts(document.querySelector('[data-instagram-feed]'), instagramPosts);
 setupHeroCarousel();
 setupClinicCarousel();
+
+function setupInstagramCarousel() {
+  const root = document.querySelector('[data-instagram-feed]');
+  const track = root?.querySelector('.instagram-feed-track');
+  const posts = root ? [...root.querySelectorAll('.instagram-post')] : [];
+  const previous = root?.querySelector('[data-instagram-prev]');
+  const next = root?.querySelector('[data-instagram-next]');
+  if (!root || !track || posts.length < 2 || !previous || !next) return;
+
+  posts.forEach(post => {
+    const clone = post.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    clone.querySelectorAll('a, button').forEach(element => { element.tabIndex = -1; });
+    track.append(clone);
+  });
+
+  let current = 0;
+  let timer;
+  const visibleCount = () => window.innerWidth <= 560 ? 2 : window.innerWidth <= 900 ? 3 : 5;
+  const ratioFor = index => Number(posts[index % posts.length].style.getPropertyValue('--post-ratio')) || 1;
+  const setRowSize = (force = false) => {
+    if (!force && track.style.getPropertyValue('--instagram-post-height')) return;
+    const viewport = root.querySelector('.instagram-feed-viewport');
+    const available = viewport?.clientWidth || root.clientWidth;
+    // A altura é definida uma única vez para que o carrossel não salte a cada troca.
+    const ratioSum = Array.from({ length: visibleCount() }, (_, offset) => ratioFor(offset))
+      .reduce((sum, ratio) => sum + ratio, 0);
+    if (available && ratioSum) track.style.setProperty('--instagram-post-height', `${available / ratioSum}px`);
+  };
+  const goTo = (index, animate = true) => {
+    current = index;
+    setRowSize();
+    if (!animate) track.style.transition = 'none';
+    const offset = [...track.querySelectorAll('.instagram-post')]
+      .slice(0, current)
+      .reduce((sum, post) => sum + post.getBoundingClientRect().width, 0);
+    track.style.transform = `translateX(-${offset}px)`;
+    if (!animate) {
+      track.offsetHeight;
+      requestAnimationFrame(() => track.style.removeProperty('transition'));
+    }
+  };
+  const advance = direction => {
+    if (direction < 0 && current === 0) {
+      goTo(posts.length, false);
+      requestAnimationFrame(() => {
+        current = posts.length - 1;
+        goTo(current);
+      });
+      return;
+    }
+    const nextIndex = current + direction;
+    goTo(nextIndex);
+    if (direction > 0 && nextIndex >= posts.length) {
+      window.setTimeout(() => goTo(0, false), 700);
+    }
+  };
+  const stop = () => window.clearInterval(timer);
+  const start = () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    stop();
+    timer = window.setInterval(() => advance(1), 5000);
+  };
+  previous.addEventListener('click', () => { advance(-1); start(); });
+  next.addEventListener('click', () => { advance(1); start(); });
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  root.addEventListener('focusin', stop);
+  root.addEventListener('focusout', event => { if (!root.contains(event.relatedTarget)) start(); });
+  window.addEventListener('resize', () => {
+    track.style.removeProperty('--instagram-post-height');
+    goTo(Math.min(current, posts.length - visibleCount()), false);
+  }, { passive: true });
+  goTo(0);
+  start();
+}
+setupInstagramCarousel();
 
 document.querySelectorAll('.treatment-cta').forEach(link => link.addEventListener('click', () => track('treatment_whatsapp_click')));
 document.querySelectorAll('.treatment-item button, .faq-question').forEach(button => button.addEventListener('click', () => {

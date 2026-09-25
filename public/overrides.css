@@ -1217,3 +1217,245 @@ main > section.location {
   .treatment-columns { margin-top: 20px; }
   .journey-list { margin-top: 20px; }
 }
+
+/* Instagram feed fixo: cinco posts selecionados, com autoplay e controles manuais. */
+.instagram-strip {
+  grid-template-columns: minmax(260px, .72fr) minmax(0, 1.28fr);
+}
+
+.instagram-strip-content {
+  min-width: 0;
+}
+
+.instagram-feed {
+  margin-top: .2rem;
+  position: relative;
+}
+
+.instagram-feed-viewport {
+  overflow: hidden;
+}
+
+.instagram-feed-track {
+  display: flex;
+  gap: 14px;
+  transition: transform .65s cubic-bezier(.22, .61, .36, 1);
+  will-change: transform;
+}
+
+.instagram-post {
+  flex: 0 0 calc((100% - 14px) / 2);
+  min-width: 0;
+}
+
+.instagram-post figure {
+  background: var(--paper);
+  border: 1px solid rgb(214 188 173 / 55%);
+  border-radius: 18px;
+  margin: 0;
+  overflow: hidden;
+}
+
+.instagram-post img {
+  aspect-ratio: 4 / 5;
+  background: var(--nude-light);
+  display: block;
+  height: auto;
+  object-fit: contain;
+  max-width: 100%;
+  width: 100%;
+}
+
+.instagram-post figcaption {
+  align-items: center;
+  display: flex;
+  font-family: var(--sans);
+  font-size: 11px;
+  gap: 8px;
+  justify-content: space-between;
+  letter-spacing: .04em;
+  padding: 12px 14px;
+  text-transform: uppercase;
+}
+
+.instagram-post a {
+  display: block;
+  transition: transform .25s ease;
+}
+
+.instagram-post a:hover {
+  transform: translateY(-4px);
+}
+
+.instagram-feed-controls {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+.instagram-feed-controls button {
+  align-items: center;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  color: var(--ink);
+  cursor: pointer;
+  display: inline-flex;
+  height: 34px;
+  justify-content: center;
+  width: 34px;
+}
+
+.instagram-feed-controls button:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.instagram-strip-link {
+  display: inline-flex;
+  font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+  justify-self: start;
+  margin-top: 1.35rem;
+  white-space: normal;
+}
+
+@media (max-width: 900px) {
+  .instagram-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .instagram-strip-copy {
+    max-width: 640px;
+  }
+
+  .instagram-post {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .instagram-post {
+    flex-basis: 100%;
+  }
+
+  .instagram-feed-track {
+    gap: 12px;
+  }
+
+  .instagram-strip-link {
+    font-size: 1.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .instagram-feed-track {
+    transition: none;
+  }
+}
+
+/* Instagram em grade editorial: cabeçalho centralizado e cards leves em sequência. */
+.instagram-strip {
+  display: block;
+  border-left: 0;
+  border-radius: 0;
+  border-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: none;
+  padding-bottom: clamp(3rem, 5vw, 5rem);
+  padding-top: clamp(3rem, 5vw, 5rem);
+  text-align: center;
+}
+
+.instagram-strip-copy {
+  margin: 0 auto;
+  max-width: 780px;
+}
+
+.instagram-strip .section-label {
+  justify-content: center;
+}
+
+.instagram-strip-copy h2 {
+  font-size: clamp(2.45rem, 4.6vw, 5.2rem);
+  line-height: .94;
+  margin: 1rem auto .9rem;
+}
+
+.instagram-strip-copy p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.instagram-strip-copy .instagram-strip-link {
+  font-size: 1.15rem;
+  justify-self: auto;
+  margin: 1.15rem auto 0;
+}
+
+.instagram-strip-content {
+  margin: clamp(2.2rem, 4vw, 3.5rem) calc(-1 * var(--pad)) 0;
+  max-width: none;
+}
+
+.instagram-feed-track {
+  gap: 0;
+}
+
+.instagram-post {
+  flex-basis: 20%;
+}
+
+.instagram-post figure {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.instagram-post img {
+  aspect-ratio: 1;
+  background: var(--nude-light);
+  object-fit: contain;
+  object-position: center;
+}
+
+.instagram-post a:hover {
+  transform: none;
+}
+
+.instagram-feed-controls {
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .instagram-post {
+    flex-basis: 33.3333%;
+  }
+}
+
+@media (max-width: 560px) {
+  .instagram-post {
+    flex-basis: 50%;
+  }
+}
+
+/* Mantém cada publicação inteira e encosta os posts, respeitando a proporção original. */
+.instagram-feed-track {
+  align-items: flex-start;
+  gap: 0;
+  width: max-content;
+}
+
+.instagram-post {
+  flex: 0 0 calc(var(--post-ratio, 1) * var(--instagram-post-height, 360px));
+  min-width: 0;
+}
+
+.instagram-post img {
+  aspect-ratio: auto;
+  display: block;
+  height: var(--instagram-post-height, 360px);
+  object-fit: contain;
+  width: 100%;
+}
