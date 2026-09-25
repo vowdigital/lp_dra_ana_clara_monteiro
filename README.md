@@ -1,15 +1,16 @@
 
 # Landing page — Dra. Ana Clara Monteiro
 
-Landing page institucional da Dra. Ana Clara Monteiro, dermatologia estética em Dourados (MS). O projeto é uma aplicação estática, com foco em apresentação da abordagem médica, conversão para WhatsApp, SEO/GEO e experiência responsiva.
+Landing page institucional da Dra. Ana Clara Monteiro, dermatologia estética em Dourados (MS). A experiência apresenta a médica, sua abordagem de beleza funcional, tratamentos faciais e corporais, casos autorizados, localização e canais de contato.
 
 ## Stack e estrutura
 
-- HTML, CSS e JavaScript nativos (sem framework ou dependências de runtime).
-- `public/`: arquivos da página, dados, estilos, scripts e imagens.
-- `build.mjs`: copia `public/` para `dist/` para publicação.
-- `server.mjs`: servidor local de desenvolvimento em `http://localhost:4173`.
-- `vercel.json`: configuração de build, saída e cabeçalhos de segurança para a Vercel.
+- HTML, CSS e JavaScript nativos, sem framework de runtime.
+- `public/`: fonte da página, estilos, scripts, dados e imagens.
+- `dist/`: versão gerada para publicação.
+- `build.mjs`: copia os arquivos de `public/` para `dist/`.
+- `server.mjs`: servidor local em `http://localhost:4173`.
+- `vercel.json`: configuração de build e saída para hospedagem estática.
 
 ## Desenvolvimento local
 
@@ -20,7 +21,7 @@ npm install
 npm run dev
 ```
 
-Abra `http://localhost:4173` no navegador. Para gerar a versão de produção:
+Abra `http://localhost:4173`. Para gerar a versão de produção:
 
 ```bash
 npm run build
@@ -28,36 +29,38 @@ npm run build
 
 O conteúdo publicado será gerado em `dist/`.
 
-## Conteúdo e integrações
+## Estrutura da experiência
 
-- CTA e botão flutuante direcionam para o WhatsApp da equipe.
-- O menu principal inclui a seção de localização da Clínica Imagem.
-- Endereço confirmado: Rua João Rosa Góes, 1940 — Jardim América, Dourados — MS, CEP 79825-130.
-- A seção de localização exibe a foto externa da Clínica Imagem; o mapa está temporariamente oculto.
-- Resultados são apresentados como casos individuais, com aviso de que a indicação depende de avaliação médica.
-- Depoimentos, novas fotos profissionais e conteúdos adicionais permanecem pendentes de aprovação.
+- Hero com retratos da Dra. Ana Clara em carrossel automático a cada 5 segundos.
+- Apresentação da médica, abordagem de beleza funcional e diferenciais do atendimento.
+- Tratamentos separados em categorias faciais e corporais, com menu suspenso e accordions.
+- Casos reais autorizados, com troca manual e transição automática a cada 5 segundos.
+- Jornada de atendimento em cards, localização da Clínica Imagem, mapa e galeria em carrossel automático a cada 4 segundos.
+- FAQ com interação por abertura/fechamento e título fixo durante a rolagem em telas maiores.
+- Bloco editorial de Instagram com link para o perfil oficial.
+- CTAs de agendamento direcionados diretamente ao WhatsApp, com ícone oficial e botão flutuante.
+
+## Conteúdo e dados principais
+
+- Clínica Imagem: Rua João Rosa Góes, 1940 — Jardim América, Dourados — MS, CEP 79825-130.
+- WhatsApp: `+55 (67) 99833-7489`.
+- Instagram: [@dra.anaclaramonteiro.c](https://www.instagram.com/dra.anaclaramonteiro.c/).
+- Resultados publicados como casos individuais, com aviso de que a indicação e os resultados dependem de avaliação médica.
+- Depoimentos permanecem desativados enquanto não houver material aprovado para publicação.
+
+Os conteúdos estruturais e imagens utilizados na página devem permanecer alinhados ao material previamente autorizado pela cliente.
 
 ## SEO, acessibilidade e performance
 
-A página inclui metadados SEO, dados estruturados Schema.org, `robots.txt`, `sitemap.xml`, textos alternativos nas imagens, navegação por teclado, estados sem JavaScript e carregamento otimizado de imagens.
+A página inclui metadados SEO, dados estruturados Schema.org, `robots.txt`, `sitemap.xml`, textos alternativos, navegação por teclado, estados compatíveis com JavaScript desativado e carregamento otimizado de imagens.
 
-## Deploy
+## Publicação
 
-O destino de produção é a Vercel, com gestão de hospedagem/domínio pela Vow Digital. Na Vercel, use:
+O comando de build para qualquer hospedagem estática é:
 
 - Build command: `npm run build`
 - Output directory: `dist`
 
-O domínio planejado é `anaclaramonteiro.com.br`.
-
 ## Direção visual
 
-A interface usa uma linguagem editorial contemporânea, com tipografia fluida, hero mais imersivo, composições assimétricas, imagens com molduras orgânicas, cards mais leves e microinterações de hover e scroll. A paleta atual prioriza branco, preto e tons neutros para manter consistência com a marca.
-
-O projeto permanece em HTML, CSS e JavaScript nativos. Essa escolha preserva carregamento rápido, SEO e simplicidade de deploy; React ou Vue podem ser considerados caso a página passe a exigir interações ou componentes dinâmicos mais complexos.
-
-O footer usa fundo claro, tipografia escura e o logo original para manter legibilidade e alinhamento com o header.
-
-### Alinhamento ao manual da marca
-
-A interface tambem aplica os tokens da identidade visual Premium: off-white `#FFFDFB`, taupe `#D6BCAD`, monograma institucional como textura sutil, tipografia editorial de alto contraste e componentes com bordas e sombras mais discretas.
+A interface segue a identidade visual premium da marca: fundo off-white, tons taupe, tipografia editorial de alto contraste, molduras orgânicas, cards discretos e microinterações suaves. A composição também se inspira em referências editoriais de dermatologia estética, mantendo o foco na presença da doutora e em uma navegação objetiva.
