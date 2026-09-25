@@ -1459,3 +1459,50 @@ main > section.location {
   object-fit: contain;
   width: 100%;
 }
+
+/* A faixa do Instagram acompanha o bege da chamada final. */
+.instagram-strip {
+  background: var(--paper);
+  padding-bottom: 0;
+}
+
+main > section.instagram-strip {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+main > section.instagram-strip + section.final-cta {
+  margin-top: 0 !important;
+}
+
+main > section.final-cta {
+  border-radius: 0 !important;
+}
+
+.instagram-strip-link {
+  align-items: center;
+  gap: .55rem;
+}
+
+.instagram-handle {
+  align-items: center;
+  display: inline-flex;
+  gap: .35rem;
+}
+
+.instagram-link-icon {
+  fill: none;
+  flex: 0 0 auto;
+  height: 1.05em;
+  stroke: currentColor;
+  width: 1.05em;
+}
+
+.instagram-link-icon circle:last-child {
+  fill: currentColor;
+  stroke: none;
+}
+
+.instagram-feed-controls {
+  display: none;
+}
