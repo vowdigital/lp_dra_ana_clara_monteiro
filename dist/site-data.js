@@ -53,11 +53,6 @@ export const results = [
     id: '01',
     before: { webp: '/images/results/result-case-02-before.webp', webpSmall: '/images/results/result-case-02-before-360.webp', jpg: '/images/results/result-case-02-before.jpg', width: 665, height: 591 },
     after: { webp: '/images/results/result-case-02-after.webp', webpSmall: '/images/results/result-case-02-after-360.webp', jpg: '/images/results/result-case-02-after.jpg', width: 665, height: 591 }
-  },
-  {
-    id: '02',
-    before: { webp: '/images/results/result-case-03-before.webp', webpSmall: '/images/results/result-case-03-before-360.webp', jpg: '/images/results/result-case-03-before.jpg', width: 665, height: 591 },
-    after: { webp: '/images/results/result-case-03-after.webp', webpSmall: '/images/results/result-case-03-after-360.webp', jpg: '/images/results/result-case-03-after.jpg', width: 665, height: 591 }
   }
 ];
 
